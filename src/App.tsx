@@ -1,10 +1,20 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.scss";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
+import Topics from "./Components/Topics/Topics";
+import FormikExamples from "./Components/FormikExamples/FormikExamples";
 
 function App() {
   return (
-    <>
+    <Router>
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a className="navbar-brand" href="#">
           Navbar
@@ -28,38 +38,23 @@ function App() {
                 Home <span className="sr-only">(current)</span>
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
-              </a>
+
+            <li className="nav-item active">
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link disabled" href="#" aria-disabled="true">
-                Disabled
-              </a>
+
+            <li className="nav-item active">
+              <Link className="nav-link" to="/topics">
+                Topics
+              </Link>
             </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="dropdown01"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <div className="dropdown-menu" aria-labelledby="dropdown01">
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </div>
+
+            <li className="nav-item active">
+              <Link className="nav-link" to="/FormikExamples">
+                FormikExamples
+              </Link>
             </li>
           </ul>
           <form className="form-inline my-2 my-lg-0">
@@ -99,47 +94,19 @@ function App() {
 
         <div className="container">
           <div className="row">
-            <div className="col-md-4">
-              <h2>Heading</h2>
-              <p>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-                tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-                fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                magna mollis euismod. Donec sed odio dui.{" "}
-              </p>
-              <p>
-                <a className="btn btn-secondary" href="#" role="button">
-                  View details &raquo;
-                </a>
-              </p>
-            </div>
-            <div className="col-md-4">
-              <h2>Heading</h2>
-              <p>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-                tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-                fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                magna mollis euismod. Donec sed odio dui.{" "}
-              </p>
-              <p>
-                <a className="btn btn-secondary" href="#" role="button">
-                  View details &raquo;
-                </a>
-              </p>
-            </div>
-            <div className="col-md-4">
-              <h2>Heading</h2>
-              <p>
-                Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-                egestas eget quam. Vestibulum id ligula porta felis euismod
-                semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-                condimentum nibh, ut fermentum massa justo sit amet risus.
-              </p>
-              <p>
-                <a className="btn btn-secondary" href="#" role="button">
-                  View details &raquo;
-                </a>
-              </p>
+            <div className="col">
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route path="/topics">
+                  <Topics />
+                </Route>
+
+                <Route path="/FormikExamples">
+                  <FormikExamples />
+                </Route>
+              </Switch>
             </div>
           </div>
 
@@ -150,8 +117,16 @@ function App() {
       <footer className="container">
         <p>&copy; Company 2017-2020</p>
       </footer>
-    </>
+    </Router>
   );
 }
 
 export default App;
+
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
+}

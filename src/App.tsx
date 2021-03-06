@@ -52,7 +52,7 @@ function App() {
             </li>
 
             <li className="nav-item active">
-              <Link className="nav-link" to="/FormikExamples">
+              <Link className="nav-link" to="/formik">
                 FormikExamples
               </Link>
             </li>
@@ -75,22 +75,7 @@ function App() {
       </nav>
 
       <main role="main">
-        <div className="jumbotron">
-          <div className="container">
-            <h1 className="display-3">Hello, world!</h1>
-            <p>
-              This is a template for a simple marketing or informational
-              website. It includes a large callout called a jumbotron and three
-              supporting pieces of content. Use it as a starting point to create
-              something more unique.
-            </p>
-            <p>
-              <a className="btn btn-primary btn-lg" href="#" role="button">
-                Learn more &raquo;
-              </a>
-            </p>
-          </div>
-        </div>
+        <div className="jumbotron"></div>
 
         <div className="container">
           <div className="row">
@@ -103,7 +88,7 @@ function App() {
                   <Topics />
                 </Route>
 
-                <Route path="/FormikExamples">
+                <Route path="/formik">
                   <FormikExamples />
                 </Route>
               </Switch>

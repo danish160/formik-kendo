@@ -31,7 +31,7 @@ const onSubmit = async (values: Values) => {
 };
 
 const StronglyTyped: React.FC = () => (
-  <Styles>
+  <div>
     <h1>🏁 React Final Form</h1>
     <h2>Strongly Typed Values with TypeScript</h2>
     <p>
@@ -47,29 +47,29 @@ const StronglyTyped: React.FC = () => (
       initialValues={{ stooge: "larry", employed: false }}
       render={({ handleSubmit, submitting, pristine, values }) => (
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>First Name</label>
-            <Field<string>
-              name="firstName"
-              component={TextInput}
-              placeholder="First Name"
-            />
-          </div>
-          <div>
-            <label>Last Name</label>
-            <Field<string>
-              name="lastName"
-              component={TextInput}
-              placeholder="Last Name"
-            />
-          </div>
-          <div>
-            <label>Age</label>
-            <Field<number>
-              name="age"
-              component={NumberInput}
-              placeholder="Age"
-            />
+          <Field<string>
+            name="firstName"
+            component={TextInput}
+            label="First Name"
+            placeholder="First Name"
+          />
+          <Field<string>
+            name="lastName"
+            component={TextInput}
+            label="Last Name"
+            placeholder="Last Name"
+          />
+          <div className="form-group row">
+            <label className="col-sm-2" htmlFor="age">
+              Age
+            </label>
+            <div className="col-sm-10">
+              <Field<number>
+                name="age"
+                component={NumberInput}
+                placeholder="Age"
+              />
+            </div>
           </div>
           <div>
             <label>Employed</label>
@@ -192,7 +192,7 @@ const StronglyTyped: React.FC = () => (
         </form>
       )}
     />
-  </Styles>
+  </div>
 );
 
 export default StronglyTyped;

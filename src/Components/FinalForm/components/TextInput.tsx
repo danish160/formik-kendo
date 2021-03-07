@@ -1,10 +1,28 @@
 import React from "react";
-import { FieldRenderProps } from "react-final-form";
+import MyFieldRenderProps from "../StronglyTyped/MyFieldRenderProps";
 
-type Props = FieldRenderProps<string, any>;
+type Props = MyFieldRenderProps<string, any>;
 
-const TextInput: React.FC<Props> = ({ input, meta, ...rest }: Props) => (
-  <input type="text" {...input} {...rest} />
-);
+const TextInput: React.FC<Props> = ({ input, meta, label, ...rest }: Props) => {
+  return (
+    <>
+      <div className="form-group row">
+        <label className="col-sm-2" htmlFor={input.name}>
+          {label}
+        </label>
+        <div className="col-sm-10">
+          <input
+            id={input.name}
+            type="text"
+            {...input}
+            {...rest}
+            className="form-control"
+          />
+        </div>
+      </div>
+      {/* <pre>{JSON.stringify({ input, meta, ...rest }, undefined, 2)}</pre> */}
+    </>
+  );
+};
 
 export default TextInput;

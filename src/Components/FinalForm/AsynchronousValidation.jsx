@@ -41,7 +41,7 @@ const usernameAvailable = simpleMemoize(async value => {
 
 const AsynchronousValidation = () => (
   <div>
-    <h1>React Final Form Example</h1>
+    <h1>🏁 React Final Form Example</h1>
     <h2>Asynchronous Field-Level Validation</h2>
     <a href="https://github.com/erikras/react-final-form#-react-final-form">
       Read Docs
@@ -57,7 +57,7 @@ const AsynchronousValidation = () => (
                 <label>Username</label>
                 <input {...input} type="text" placeholder="Username" />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
-                {meta.validating && <span>SPINNER</span>}
+                {meta.validating && <span>Spinner</span>  }
               </div>
             )}
           </Field>

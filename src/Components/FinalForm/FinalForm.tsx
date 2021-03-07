@@ -2,6 +2,7 @@ import "react-app-polyfill/ie11";
 import * as React from "react";
 import { Link, NavLink, Route, Switch, useRouteMatch } from "react-router-dom";
 import AsynchronousValidation from "./AsynchronousValidation";
+import StronglyTyped from "./StronglyTyped/StronglyTyped";
 
 const FinalForm = () => {
   let { path, url } = useRouteMatch();
@@ -17,6 +18,14 @@ const FinalForm = () => {
           >
             AsynchronousValidation
           </NavLink>
+
+          <NavLink
+            className="nav-link"
+            activeClassName="active"
+            to={`${url}/StronglyTyped`}
+          >
+            StronglyTyped
+          </NavLink>
         </li>
       </ul>
 
@@ -24,12 +33,13 @@ const FinalForm = () => {
         <div className="row">
           <div className="col">
             <Switch>
-              {/* <Route exact path={path}>
-                <h5>Please select.</h5>
-              </Route> */}
               <Route path={`${path}/AsynchronousValidation`}>
                 <AsynchronousValidation />
-              </Route>{" "}
+              </Route>
+
+              <Route path={`${path}/StronglyTyped`}>
+                <StronglyTyped />
+              </Route>
             </Switch>
           </div>
         </div>

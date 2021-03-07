@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import Topics from "./Components/Topics/Topics";
 import FormikExamples from "./Components/FormikExamples/FormikExamples";
+import FinalForm from "./Components/FinalForm/FinalForm";
 
 function App() {
   return (
@@ -41,13 +42,19 @@ function App() {
 
             <li className="nav-item active">
               <Link className="nav-link" to="/topics">
-                Topics
+                Routing example
               </Link>
             </li>
 
             <li className="nav-item active">
               <Link className="nav-link" to="/formik">
-                FormikExamples
+                Formik
+              </Link>
+            </li>
+
+            <li className="nav-item active">
+              <Link className="nav-link" to="/final-form">
+                Final form
               </Link>
             </li>
           </ul>
@@ -84,6 +91,10 @@ function App() {
 
                 <Route path="/formik">
                   <FormikExamples />
+                </Route>
+
+                <Route path="/final-form">
+                  <FinalForm />
                 </Route>
               </Switch>
             </div>

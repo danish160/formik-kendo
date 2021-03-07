@@ -7,7 +7,7 @@ import {
   Route,
   Link,
   useParams,
-  useRouteMatch,
+  useRouteMatch
 } from "react-router-dom";
 import Topics from "./Components/Topics/Topics";
 import FormikExamples from "./Components/FormikExamples/FormikExamples";
@@ -17,9 +17,6 @@ function App() {
   return (
     <Router>
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a className="navbar-brand" href="#">
-          Navbar
-        </a>
         <button
           className="navbar-toggler"
           type="button"
@@ -58,20 +55,6 @@ function App() {
               </Link>
             </li>
           </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input
-              className="form-control mr-sm-2"
-              type="text"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
         </div>
       </nav>
 

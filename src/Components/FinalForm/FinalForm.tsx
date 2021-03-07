@@ -8,7 +8,7 @@ const FinalForm = () => {
   let { path, url } = useRouteMatch();
   return (
     <>
-      <h3>Formik Examples</h3>
+      <h3>React Final Form Examples</h3>
       <ul className="nav nav-pills">
         <li className="nav-item">
           <NavLink
@@ -16,7 +16,7 @@ const FinalForm = () => {
             activeClassName="active"
             to={`${url}/AsynchronousValidation`}
           >
-            AsynchronousValidation
+            Async Validation
           </NavLink>
 
           <NavLink
@@ -24,7 +24,7 @@ const FinalForm = () => {
             activeClassName="active"
             to={`${url}/StronglyTyped`}
           >
-            StronglyTyped
+            Strongly Typed Fields
           </NavLink>
         </li>
       </ul>

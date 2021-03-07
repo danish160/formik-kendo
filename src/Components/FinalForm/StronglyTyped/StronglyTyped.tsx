@@ -8,6 +8,13 @@ import TextAreaInput from "../components/TextAreaInput";
 import SelectInput from "../components/SelectInput";
 import MultiSelectInput from "../components/MultiSelectInput";
 import MultiCheckboxInput from "../components/MultiCheckboxInput";
+import {
+  KendoDropDown,
+  KendoInput,
+  KendoNumericTextBox,
+  KendoSwitch,
+  KendoTextarea,
+} from "../components/KendoInput";
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -39,16 +46,27 @@ const StronglyTyped: React.FC = () => (
           <Field<string>
             name="firstName"
             component={TextInput}
-            label="First Name"
+            label="First Name (regular html input)"
             placeholder="First Name"
           />
-          <Field<string>
+
+          <Field
             name="lastName"
-            component={TextInput}
-            label="Last Name"
+            component={KendoInput}
+            label="Last Name  (kendo text input)"
             placeholder="Last Name"
           />
-          <div className="form-group row">
+
+          <Field
+            name="class"
+            component={KendoDropDown}
+            data={["Economy", "Premium Economy", "Business", "First Class"]}
+            label="Choose class"
+          />
+
+          <Field name="age" component={KendoNumericTextBox} label="Age" />
+
+          {/* <div className="form-group row">
             <label className="col-sm-2" htmlFor="age">
               Age
             </label>
@@ -59,15 +77,25 @@ const StronglyTyped: React.FC = () => (
                 placeholder="Age"
               />
             </div>
-          </div>
-          <div>
+          </div> */}
+
+          {/* <div>
             <label>Employed</label>
             <Field<boolean>
               name="employed"
               type="checkbox"
               component={CheckboxInput}
             />
-          </div>
+          </div> */}
+
+          <Field
+            name="employed"
+            component={KendoSwitch}
+            onLabel={"Yes"}
+            offLabel={"No"}
+            label="Employed"
+          />
+
           <div>
             <label>Favorite Color</label>
             <Field<string> name="favoriteColor" component={SelectInput}>
@@ -77,6 +105,7 @@ const StronglyTyped: React.FC = () => (
               <option value="#0000ff">💙 Blue</option>
             </Field>
           </div>
+
           <div>
             <label>Toppings</label>
             <Field<string[]> name="toppings" component={MultiSelectInput}>
@@ -161,10 +190,18 @@ const StronglyTyped: React.FC = () => (
               </label>
             </div>
           </div>
-          <div>
+
+          {/* <div>
             <label>Notes</label>
             <Field name="notes" component={TextAreaInput} placeholder="Notes" />
-          </div>
+          </div> */}
+          <Field
+            name="Notes"
+            component={KendoTextarea}
+            label="Notes"
+            placeholder="Notes"
+          />
+
           <div className="buttons">
             <button type="submit" disabled={submitting || pristine}>
               Submit

@@ -7,10 +7,10 @@ const TextInput: React.FC<Props> = ({ input, meta, label, ...rest }: Props) => {
   return (
     <>
       <div className="form-group row">
-        <label className="col-sm-2" htmlFor={input.name}>
+        <label className="col-sm-4" htmlFor={input.name}>
           {label}
         </label>
-        <div className="col-sm-10">
+        <div className="col-sm-8">
           <input
             id={input.name}
             type="text"

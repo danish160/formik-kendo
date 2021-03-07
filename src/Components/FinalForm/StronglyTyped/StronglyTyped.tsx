@@ -1,6 +1,4 @@
 import React from "react";
-import { render } from "react-dom";
-import Styles from "./Styles";
 import { Form, Field } from "react-final-form";
 import CheckboxInput from "../components/CheckboxInput";
 import RadioInput from "../components/RadioInput";
@@ -32,16 +30,7 @@ const onSubmit = async (values: Values) => {
 
 const StronglyTyped: React.FC = () => (
   <div>
-    <h1>🏁 React Final Form</h1>
-    <h2>Strongly Typed Values with TypeScript</h2>
-    <p>
-      Strongly Typed form values and field values. Each input requires a
-      specific type, which is provided by a JSX generic specification on the
-      Field component.
-    </p>
-    <a href="https://github.com/erikras/react-final-form#-react-final-form">
-      Read Docs
-    </a>
+    <hr />
     <Form
       onSubmit={onSubmit}
       initialValues={{ stooge: "larry", employed: false }}

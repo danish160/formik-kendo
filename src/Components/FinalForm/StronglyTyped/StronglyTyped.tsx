@@ -1,6 +1,4 @@
 import React from "react";
-import { render } from "react-dom";
-import Styles from "./Styles";
 import { Form, Field } from "react-final-form";
 import CheckboxInput from "../components/CheckboxInput";
 import RadioInput from "../components/RadioInput";
@@ -10,6 +8,13 @@ import TextAreaInput from "../components/TextAreaInput";
 import SelectInput from "../components/SelectInput";
 import MultiSelectInput from "../components/MultiSelectInput";
 import MultiCheckboxInput from "../components/MultiCheckboxInput";
+import {
+  KendoDropDown,
+  KendoInput,
+  KendoNumericTextBox,
+  KendoSwitch,
+  KendoTextarea,
+} from "../components/KendoInput";
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -25,23 +30,25 @@ interface Values {
   notes?: string;
 }
 
+const colors = [
+  { value: "", name: "" },
+  { value: "#ff0000", name: "❤️ Red" },
+  { value: "#00ff00", name: "💚 Green" },
+  { value: "#0000ff", name: "💙 Blue" },
+];
+
 const onSubmit = async (values: Values) => {
   await sleep(300);
   window.alert(JSON.stringify(values, undefined, 2));
 };
 
+const emailRegex = new RegExp(/\S+@\S+\.\S+/);
+const emailValidator = (value: string) =>
+  emailRegex.test(value) ? "" : "Please enter a valid email.";
+
 const StronglyTyped: React.FC = () => (
   <div>
-    <h1>🏁 React Final Form</h1>
-    <h2>Strongly Typed Values with TypeScript</h2>
-    <p>
-      Strongly Typed form values and field values. Each input requires a
-      specific type, which is provided by a JSX generic specification on the
-      Field component.
-    </p>
-    <a href="https://github.com/erikras/react-final-form#-react-final-form">
-      Read Docs
-    </a>
+    <hr />
     <Form
       onSubmit={onSubmit}
       initialValues={{ stooge: "larry", employed: false }}
@@ -50,44 +57,53 @@ const StronglyTyped: React.FC = () => (
           <Field<string>
             name="firstName"
             component={TextInput}
-            label="First Name"
+            label="First Name (regular html input)"
             placeholder="First Name"
+            required
           />
-          <Field<string>
+
+          <Field
             name="lastName"
-            component={TextInput}
-            label="Last Name"
+            component={KendoInput}
+            label="Last Name  (kendo text input)"
             placeholder="Last Name"
+            required
           />
-          <div className="form-group row">
-            <label className="col-sm-2" htmlFor="age">
-              Age
-            </label>
-            <div className="col-sm-10">
-              <Field<number>
-                name="age"
-                component={NumberInput}
-                placeholder="Age"
-              />
-            </div>
-          </div>
-          <div>
-            <label>Employed</label>
-            <Field<boolean>
-              name="employed"
-              type="checkbox"
-              component={CheckboxInput}
-            />
-          </div>
-          <div>
-            <label>Favorite Color</label>
-            <Field<string> name="favoriteColor" component={SelectInput}>
-              <option />
-              <option value="#ff0000">❤️ Red</option>
-              <option value="#00ff00">💚 Green</option>
-              <option value="#0000ff">💙 Blue</option>
-            </Field>
-          </div>
+
+          <Field
+            name="email"
+            component={KendoInput}
+            label="Email Address"
+            placeholder="Email Address"
+            validator={emailValidator}
+          />
+
+          <Field
+            name="class"
+            component={KendoDropDown}
+            data={["Economy", "Premium Economy", "Business", "First Class"]}
+            label="Choose class"
+          />
+
+          <Field name="age" component={KendoNumericTextBox} label="Age" />
+
+          <Field
+            name="employed"
+            component={KendoSwitch}
+            onLabel={"Yes"}
+            offLabel={"No"}
+            label="Employed"
+          />
+
+          <Field
+            name="favoriteColor"
+            component={KendoDropDown}
+            data={colors}
+            textField="name"
+            dataItemKey="value"
+            label="Favorite Color"
+          />
+
           <div>
             <label>Toppings</label>
             <Field<string[]> name="toppings" component={MultiSelectInput}>
@@ -172,10 +188,18 @@ const StronglyTyped: React.FC = () => (
               </label>
             </div>
           </div>
-          <div>
+
+          {/* <div>
             <label>Notes</label>
             <Field name="notes" component={TextAreaInput} placeholder="Notes" />
-          </div>
+          </div> */}
+          <Field
+            name="Notes"
+            component={KendoTextarea}
+            label="Notes"
+            placeholder="Notes"
+          />
+
           <div className="buttons">
             <button type="submit" disabled={submitting || pristine}>
               Submit

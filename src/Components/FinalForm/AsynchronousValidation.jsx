@@ -1,24 +1,24 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const onSubmit = async values => {
+const onSubmit = async (values) => {
   await sleep(300);
   window.alert(JSON.stringify(values, undefined, 2));
 };
 
-const required = value => (value ? undefined : "Required");
-const mustBeNumber = value => (isNaN(value) ? "Must be a number" : undefined);
-const minValue = min => value =>
+const required = (value) => (value ? undefined : "Required");
+const mustBeNumber = (value) => (isNaN(value) ? "Must be a number" : undefined);
+const minValue = (min) => (value) =>
   isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`;
-const composeValidators = (...validators) => value =>
+const composeValidators = (...validators) => (value) =>
   validators.reduce((error, validator) => error || validator(value), undefined);
 
-const simpleMemoize = fn => {
+const simpleMemoize = (fn) => {
   let lastArg;
   let lastResult;
-  return arg => {
+  return (arg) => {
     if (arg !== lastArg) {
       lastArg = arg;
       lastResult = fn(arg);
@@ -27,7 +27,7 @@ const simpleMemoize = fn => {
   };
 };
 
-const usernameAvailable = simpleMemoize(async value => {
+const usernameAvailable = simpleMemoize(async (value) => {
   if (!value) {
     return "Required";
   }
@@ -41,11 +41,7 @@ const usernameAvailable = simpleMemoize(async value => {
 
 const AsynchronousValidation = () => (
   <div>
-    <h1>🏁 React Final Form Example</h1>
-    <h2>Asynchronous Field-Level Validation</h2>
-    <a href="https://github.com/erikras/react-final-form#-react-final-form">
-      Read Docs
-    </a>
+    <hr />
     <div>Usernames John, Paul, George or Ringo will fail async validation.</div>
     <Form
       onSubmit={onSubmit}
@@ -57,7 +53,7 @@ const AsynchronousValidation = () => (
                 <label>Username</label>
                 <input {...input} type="text" placeholder="Username" />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
-                {meta.validating && <span>Spinner</span>  }
+                {meta.validating && <span>Spinner</span>}
               </div>
             )}
           </Field>

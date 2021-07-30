@@ -30,10 +30,21 @@ interface Values {
   notes?: string;
 }
 
+const colors = [
+  { value: "", name: "" },
+  { value: "#ff0000", name: "❤️ Red" },
+  { value: "#00ff00", name: "💚 Green" },
+  { value: "#0000ff", name: "💙 Blue" },
+];
+
 const onSubmit = async (values: Values) => {
   await sleep(300);
   window.alert(JSON.stringify(values, undefined, 2));
 };
+
+const emailRegex = new RegExp(/\S+@\S+\.\S+/);
+const emailValidator = (value: string) =>
+  emailRegex.test(value) ? "" : "Please enter a valid email.";
 
 const StronglyTyped: React.FC = () => (
   <div>
@@ -48,6 +59,7 @@ const StronglyTyped: React.FC = () => (
             component={TextInput}
             label="First Name (regular html input)"
             placeholder="First Name"
+            required
           />
 
           <Field
@@ -55,6 +67,15 @@ const StronglyTyped: React.FC = () => (
             component={KendoInput}
             label="Last Name  (kendo text input)"
             placeholder="Last Name"
+            required
+          />
+
+          <Field
+            name="email"
+            component={KendoInput}
+            label="Email Address"
+            placeholder="Email Address"
+            validator={emailValidator}
           />
 
           <Field
@@ -66,28 +87,6 @@ const StronglyTyped: React.FC = () => (
 
           <Field name="age" component={KendoNumericTextBox} label="Age" />
 
-          {/* <div className="form-group row">
-            <label className="col-sm-2" htmlFor="age">
-              Age
-            </label>
-            <div className="col-sm-10">
-              <Field<number>
-                name="age"
-                component={NumberInput}
-                placeholder="Age"
-              />
-            </div>
-          </div> */}
-
-          {/* <div>
-            <label>Employed</label>
-            <Field<boolean>
-              name="employed"
-              type="checkbox"
-              component={CheckboxInput}
-            />
-          </div> */}
-
           <Field
             name="employed"
             component={KendoSwitch}
@@ -96,15 +95,14 @@ const StronglyTyped: React.FC = () => (
             label="Employed"
           />
 
-          <div>
-            <label>Favorite Color</label>
-            <Field<string> name="favoriteColor" component={SelectInput}>
-              <option />
-              <option value="#ff0000">❤️ Red</option>
-              <option value="#00ff00">💚 Green</option>
-              <option value="#0000ff">💙 Blue</option>
-            </Field>
-          </div>
+          <Field
+            name="favoriteColor"
+            component={KendoDropDown}
+            data={colors}
+            textField="name"
+            dataItemKey="value"
+            label="Favorite Color"
+          />
 
           <div>
             <label>Toppings</label>

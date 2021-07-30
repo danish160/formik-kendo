@@ -14,13 +14,13 @@ const kendoHOC = (type, { input, meta, label, ...rest }) => {
   }
   return (
     <>
-      <div className="form-group row">
+      <div className="form-group row" style={{ border: "3px solid red" }}>
         <label className="col-sm-4" htmlFor={input.name}>
           {label}
         </label>
         <div className="col-sm-8">
           <Type id={input.name} {...input} {...rest} className="form-control" />
-
+          {/* <pre>{JSON.stringify(meta)}</pre> */}
           {meta.error && meta.touched && (
             <span className="k-required">{meta.error}</span>
           )}
